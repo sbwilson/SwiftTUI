@@ -3,19 +3,21 @@ import Foundation
 public struct TextField: View, PrimitiveView {
     public let placeholder: String?
     public let action: (String) -> Void
+    public let update: ((String) -> Void)?
 
     @Environment(\.placeholderColor) private var placeholderColor: Color
 
-    public init(placeholder: String? = nil, action: @escaping (String) -> Void) {
+    public init(placeholder: String? = nil, action: @escaping (String) -> Void, update: ((String) -> Void)? = nil) {
         self.placeholder = placeholder
         self.action = action
+        self.update = update
     }
 
     static var size: Int? { 1 }
 
     func buildNode(_ node: Node) {
         setupEnvironmentProperties(node: node)
-        node.control = TextFieldControl(placeholder: placeholder ?? "", placeholderColor: placeholderColor, action: action)
+        node.control = TextFieldControl(placeholder: placeholder ?? "", placeholderColor: placeholderColor, action: action, update: update)
     }
 
     func updateNode(_ node: Node) {
@@ -28,13 +30,14 @@ public struct TextField: View, PrimitiveView {
         var placeholder: String
         var placeholderColor: Color
         var action: (String) -> Void
-
+        var update: ((String) -> Void)?
         var text: String = ""
 
-        init(placeholder: String, placeholderColor: Color, action: @escaping (String) -> Void) {
+        init(placeholder: String, placeholderColor: Color, action: @escaping (String) -> Void, update: ((String) -> Void)?) {
             self.placeholder = placeholder
             self.placeholderColor = placeholderColor
             self.action = action
+            self.update = update
         }
 
         override func size(proposedSize: Size) -> Size {
@@ -42,6 +45,8 @@ public struct TextField: View, PrimitiveView {
         }
 
         override func handleEvent(_ char: Character) {
+            defer { update?(text) }
+
             if char == "\n" {
                 action(text)
                 self.text = ""
