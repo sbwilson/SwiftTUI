@@ -55,6 +55,7 @@ public struct TextField: View, PrimitiveView {
 		) {
 			self.placeholder = placeholder
 			self.placeholderColor = placeholderColor
+			self.text = initialValue
 			self.action = action
 			self.update = update
 		}
