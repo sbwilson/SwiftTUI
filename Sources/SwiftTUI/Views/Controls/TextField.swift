@@ -68,9 +68,10 @@ public struct TextField: View, PrimitiveView {
 		}
 
 		override func handleEvent(_ char: Character) {
-			defer { update?(text) }
+//			defer { update?(text) } // we don't want update after action
 
 			if char == "\n" {
+				update?(text)
 				action(text)
 				self.text = ""
 				layer.invalidate()
@@ -80,6 +81,7 @@ public struct TextField: View, PrimitiveView {
 			if char == ASCII.DEL {
 				if !self.text.isEmpty {
 					self.text.removeLast()
+					update?(text)
 					layer.invalidate()
 				}
 				return
@@ -87,6 +89,7 @@ public struct TextField: View, PrimitiveView {
 
 			self.text += String(char)
 			layer.invalidate()
+			update?(text)
 		}
 
 		override func cell(at position: Position) -> Cell? {
