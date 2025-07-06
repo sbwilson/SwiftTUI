@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct ContentView: View {
     @State var counter = 1
 

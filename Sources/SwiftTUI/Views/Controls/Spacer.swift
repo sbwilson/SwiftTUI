@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct Spacer: View, PrimitiveView {
     @Environment(\.stackOrientation) var stackOrientation
     

@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct EmptyView: View, PrimitiveView {
     public init() {}
 

@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct ToDoList: View {
     @State var toDos: [ToDo] = [
         ToDo(text: "Hello"),

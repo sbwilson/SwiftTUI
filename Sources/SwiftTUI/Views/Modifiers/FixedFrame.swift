@@ -7,6 +7,7 @@ public extension View {
     }
 }
 
+@MainActor
 private struct FixedFrame<Content: View>: View, PrimitiveView, ModifierView {
     let content: Content
     let width: Extended?

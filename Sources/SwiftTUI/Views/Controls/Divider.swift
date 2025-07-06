@@ -89,6 +89,7 @@ public struct DividerStyle: Equatable {
 
 /// Divide a content using a vertical or horizontal line.
 /// The orientation, will be defined by the parent, if `HStack` a horizontal line will be used, otherwise a vertical line.
+@MainActor
 public struct Divider: View, PrimitiveView {
     @Environment(\.stackOrientation) private var stackOrientation
     @Environment(\.foregroundColor) private var foregroundColor: Color

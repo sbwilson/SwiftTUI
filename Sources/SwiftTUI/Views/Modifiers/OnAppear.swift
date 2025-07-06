@@ -6,6 +6,7 @@ public extension View {
     }
 }
 
+@MainActor
 private struct OnAppear<Content: View>: View, PrimitiveView, ModifierView {
     let content: Content
     let action: () -> Void

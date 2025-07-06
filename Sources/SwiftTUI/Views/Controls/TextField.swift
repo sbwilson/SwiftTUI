@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct TextField: View, PrimitiveView {
 	public let placeholder: String?
 	public let initialValue: String?
@@ -74,7 +75,7 @@ public struct TextField: View, PrimitiveView {
 				update?(text)
 				action(text)
 				self.text = ""
-				layer.invalidate()
+				Task { @MainActor in layer.invalidate() }
 				return
 			}
 
@@ -82,13 +83,13 @@ public struct TextField: View, PrimitiveView {
 				if !self.text.isEmpty {
 					self.text.removeLast()
 					update?(text)
-					layer.invalidate()
+					Task { @MainActor in layer.invalidate() }
 				}
 				return
 			}
 
 			self.text += String(char)
-			layer.invalidate()
+			Task { @MainActor in layer.invalidate() }
 			update?(text)
 		}
 
@@ -129,12 +130,12 @@ public struct TextField: View, PrimitiveView {
 
 		override func becomeFirstResponder() {
 			super.becomeFirstResponder()
-			layer.invalidate()
+			Task { @MainActor in layer.invalidate() }
 		}
 
 		override func resignFirstResponder() {
 			super.resignFirstResponder()
-			layer.invalidate()
+			Task { @MainActor in layer.invalidate() }
 		}
 	}
 }

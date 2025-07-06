@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct Text: View, PrimitiveView {
     private var text: String?
     

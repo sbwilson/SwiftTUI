@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct Button<Label: View>: View, PrimitiveView {
     let label: VStack<Label>
     let hover: () -> Void
@@ -64,13 +65,13 @@ public struct Button<Label: View>: View, PrimitiveView {
             super.becomeFirstResponder()
             buttonLayer?.highlighted = true
             hover()
-            layer.invalidate()
+            Task { @MainActor in layer.invalidate() }
         }
 
         override func resignFirstResponder() {
             super.resignFirstResponder()
             buttonLayer?.highlighted = false
-            layer.invalidate()
+            Task { @MainActor in layer.invalidate() }
         }
 
         override func makeLayer() -> Layer {

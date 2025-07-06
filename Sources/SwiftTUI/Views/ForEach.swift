@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct ForEach<Data, ID, Content>: View, PrimitiveView where Data : RandomAccessCollection, ID : Hashable, Content : View {
     public var data: Data
     public var content: (Data.Element) -> Content

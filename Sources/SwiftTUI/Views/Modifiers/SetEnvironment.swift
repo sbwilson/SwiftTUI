@@ -6,6 +6,7 @@ public extension View {
     }
 }
 
+@MainActor
 private struct SetEnvironment<Content: View, T>: View, PrimitiveView {
     let content: Content
     let keyPath: WritableKeyPath<EnvironmentValues, T>

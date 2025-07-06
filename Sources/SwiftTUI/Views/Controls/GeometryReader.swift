@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct GeometryReader<Content: View>: View, PrimitiveView {
     let content: (Size) -> Content
 

@@ -73,6 +73,7 @@ class OnKeyPressControl: Control {
 }
 
 // MARK: Example Usage
+@MainActor
 public struct ExampleOnKeyPressView: View {
     @State var isASelected: Bool
     @State var isBSelected: Bool

@@ -23,6 +23,7 @@ public struct Environment<T>: AnyEnvironment {
 
     var valueReference = EnvironmentReference()
 
+    @MainActor
     public var wrappedValue: T {
         get {
             guard let node = valueReference.node else {
@@ -35,6 +36,7 @@ public struct Environment<T>: AnyEnvironment {
         set {}
     }
 
+    @MainActor
     private func makeEnvironment(node: Node, transform: (inout EnvironmentValues) -> Void) -> EnvironmentValues {
         if let parent = node.parent {
             return makeEnvironment(node: parent) {

@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 extension Color: View, PrimitiveView {
     static var size: Int? { 1 }
     

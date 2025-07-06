@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct FlagView: View {
     let flag: Flag
     @Binding var selected: Int

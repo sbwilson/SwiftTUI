@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct ColorCell: View {
     let colorState: ColorState
 

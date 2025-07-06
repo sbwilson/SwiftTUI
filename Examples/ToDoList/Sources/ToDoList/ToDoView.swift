@@ -1,6 +1,7 @@
 import SwiftTUI
 import Foundation
 
+@MainActor
 struct ToDoView: View {
     let toDo: ToDo
     let onDelete: () -> Void

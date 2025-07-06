@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct Group<Content: View>: View, PrimitiveView {
     public let content: Content
 

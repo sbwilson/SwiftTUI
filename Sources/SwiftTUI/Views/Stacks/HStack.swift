@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct HStack<Content: View>: View, PrimitiveView, LayoutRootView {
     public let content: Content
     let alignment: VerticalAlignment

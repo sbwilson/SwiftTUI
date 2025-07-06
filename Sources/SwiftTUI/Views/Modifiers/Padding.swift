@@ -14,6 +14,7 @@ public extension View {
     }
 }
 
+@MainActor
 private struct Padding<Content: View>: View, PrimitiveView, ModifierView {
     let content: Content
     let edges: Edges

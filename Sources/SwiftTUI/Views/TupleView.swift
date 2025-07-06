@@ -284,6 +284,7 @@ public struct TupleView9<C0: View, C1: View, C2: View, C3: View, C4: View, C5: V
 
 }
 
+@MainActor
 public struct TupleView10<C0: View, C1: View, C2: View, C3: View, C4: View, C5: View, C6: View, C7: View, C8: View, C9: View>: View, PrimitiveView {
     public let content: (C0, C1, C2, C3, C4, C5, C6, C7, C8, C9)
 

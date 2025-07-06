@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct ContentView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 3) {

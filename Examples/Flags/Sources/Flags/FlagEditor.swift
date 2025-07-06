@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct FlagEditor: View {
     @State var flag = Flag(colors: [.green, .white])
     @State var selected = 0

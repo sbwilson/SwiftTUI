@@ -11,6 +11,7 @@ extension View {
 		}
 	}
 
+	@MainActor
 	func startObservation(node: Node) {
 		log("Starting observation")
 		withObservationTracking {
@@ -22,7 +23,7 @@ extension View {
 				}
 			}
 			log("Observation observed a change. invalidating node...")
-			node.root.application?.invalidateNode(node)
+			Task { @MainActor in node.root.application?.invalidateNode(node) }
 		}
 	}
 }

@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 public struct ZStack<Content: View>: View, PrimitiveView, LayoutRootView {
     public let content: Content
     let alignment: Alignment

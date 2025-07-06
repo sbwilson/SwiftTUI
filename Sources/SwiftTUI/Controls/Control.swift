@@ -2,6 +2,7 @@ import Foundation
 
 /// The basic layout object that can be created by a node. Not every node will
 /// create a control (e.g. ForEach won't).
+@MainActor
 class Control: LayerDrawing {
     private(set) var children: [Control] = []
     private(set) var parent: Control?
@@ -13,6 +14,7 @@ class Control: LayerDrawing {
 
     var root: Control { parent?.root ?? self }
 
+    @MainActor
     func addSubview(_ view: Control, at index: Int) {
         self.children.insert(view, at: index)
         layer.addLayer(view.layer, at: index)
@@ -29,6 +31,7 @@ class Control: LayerDrawing {
         }
     }
 
+    @MainActor
     func removeSubview(at index: Int) {
         if children[index].isFirstResponder || root.window?.firstResponder?.isDescendant(of: children[index]) == true {
             root.window?.firstResponder?.resignFirstResponder()
@@ -61,6 +64,7 @@ class Control: LayerDrawing {
         proposedSize
     }
 
+    @MainActor
     func layout(size: Size) {
         layer.frame.size = size
     }
@@ -89,10 +93,12 @@ class Control: LayerDrawing {
         }
     }
 
+    @MainActor
     func becomeFirstResponder() {
         scroll(to: .zero)
     }
 
+    @MainActor
     func resignFirstResponder() {}
 
     var isFirstResponder: Bool { root.window?.firstResponder === self }
@@ -116,6 +122,7 @@ class Control: LayerDrawing {
 
     // MARK: - Scrolling
 
+    @MainActor
     func scroll(to position: Position) {
         parent?.scroll(to: position + layer.frame.position)
     }
@@ -123,6 +130,7 @@ class Control: LayerDrawing {
 }
 
 // Extension to flatten nested categories
+@MainActor
 extension Array where Element == Control {
     /// Filter out all ``Control``s  except ``OnKeyPressControl`` and recursively flatten into one array.
     func flattenAndKeepOnlyOnKeyPressControl() -> [OnKeyPressControl] {

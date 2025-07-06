@@ -75,6 +75,7 @@ public struct BorderStyle: Equatable {
     }
 }
 
+@MainActor
 private struct Border<Content: View>: View, PrimitiveView, ModifierView {
     let content: Content
     let color: Color?

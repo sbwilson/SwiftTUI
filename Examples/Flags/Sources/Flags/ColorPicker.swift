@@ -1,5 +1,6 @@
 import SwiftTUI
 
+@MainActor
 struct ColorPicker: View {
     var pickColor: (Color) -> Void
 

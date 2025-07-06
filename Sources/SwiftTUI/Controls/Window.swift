@@ -7,6 +7,7 @@ class Window: LayerDrawing {
 
     var firstResponder: Control?
 
+    @MainActor
     func addControl(_ control: Control) {
         control.window = self
         self.controls.append(control)

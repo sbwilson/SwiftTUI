@@ -1,6 +1,7 @@
 import Foundation
 
 /// This wraps a composed (user-defined) view, so that it can be used in a view graph node.
+@MainActor
 struct ComposedView<I: View>: GenericView {
 	let view: I
 
